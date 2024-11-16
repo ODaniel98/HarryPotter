@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="hu">
+<!-- Harry Potter es a Felver Herceg, amikor Harrynek a legregibb konyv jut neki ami a Felver Hercege es eppen az ust mogott all -->
+<head>
+    <meta charset=utf-8>
+    <title>Beadando</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { width: 100%; height: 100% }
+        #caption {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50%;
+            text-align: left;
+            z-index: 100;
+            display:block;
+            color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="caption">
+    Ollai Dániel F5CQ9L Gazdaságinformatika 2023/2024/1
+</div>
+<script async src="./dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+    "imports": {
+        "three": "./js-r154/build/three.module.js",
+        "trackballcontrols": "./js-r154/examples/jsm/controls/TrackballControls.js"
+    }
+}
+</script>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { TrackballControls } from 'trackballcontrols';
+    // Globális változók
+    let WIDTH, HEIGHT, aspectRatio;
+    let renderer;
+    let scene, camera;
+    let geometry, material, mesh;
+    let controls;
+    let cylGeometry;
+    let cylMaterial;
+    let cylMesh;
+    let cylGeometry2;
+    let cylMaterial2;
+    let cylMesh2;
+    let cylGeometry3;
+    let cylMaterial3;
+    let cylMesh3;
+    let cylGeometry4;
+    let cylMaterial4;
+    let cylMesh4;
+    let cylGeometry5;
+    let cylMaterial5;
+    let cylMesh5;
+    let cylGeometry6;
+    let cylMaterial6;
+    let cylMesh6;
+    let cylGeometry7;
+    let cylMaterial7;
+    let cylMesh7;
+    let cylGeometry8;
+    let cylMaterial8;
+    let cylMesh8;
+    let cylGeometry9;
+    let cylMaterial9;
+    let cylMesh9;
+    let cylGeometry10;
+    let cylMaterial10;
+    let cylMesh10;
+    let cylGeometry11;
+    let cylMaterial11;
+    let cylMesh11;
+    let cylGeometry12;
+    let cylMaterial12;
+    let cylMesh12;
+    let uvegcsetartoGeometry;
+    let uvegcsetartoMaterial;
+    let uvegcsetartoMesh;
+    let uvegcsetartoGeometry2;
+    let uvegcsetartoMaterial2;
+    let uvegcsetartoMesh2;
+    let uvegcsetartoGeometry3;
+    let uvegcsetartoMaterial3;
+    let uvegcsetartoMesh3;
+    let uvegcsetartoGeometry4;
+    let uvegcsetartoMaterial4;
+    let uvegcsetartoMesh4;
+    let sphereGeometry;
+    let sphereMaterial;
+    let sphereMesh;
+    let sphereGeometry1;
+    let sphereMaterial1;
+    let sphereMesh1;
+    let cylGeometry13;
+    let cylMaterial13;
+    let cylMesh13;
+    let cylGeometry14;
+    let cylMaterial14;
+    let cylMesh14;
+    let cylGeometry15;
+    let cylMaterial15;
+    let cylMesh15;
+    let cylGeometry16;
+    let cylMaterial16;
+    let cylMesh16;
+    let cylGeometry17;
+    let cylMaterial17;
+    let cylMesh17;
+    let boxGeometry;
+    let boxMaterial;
+    let boxMesh;
+    let boxGeometry2;
+    let boxMaterial2;
+    let boxMesh2;
+    let boxGeometry3;
+    let boxMaterial3;
+    let boxMesh3;
+    let boxGeometry1;
+    let boxMaterial1;
+    let boxMesh1;
+    let boxGeometry4;
+    let boxMaterial4;
+    let boxMesh4;
+    let boxGeometry5;
+    let boxMaterial5;
+    let boxMesh5;
+    let cylGeometry18;
+    let cylMaterial18;
+    let cylMesh18;
+    let cylGeometry19;
+    let cylMaterial19;
+    let cylMesh19;
+    let cylGeometry20;
+    let cylMaterial20;
+    let cylMesh20;
+    let cylGeometry21;
+    let cylMaterial21;
+    let cylMesh21;
+    let cylGeometry22;
+    let cylMaterial22;
+    let cylMesh22;
+    let cylGeometry23;
+    let cylMaterial23;
+    let cylMesh23;
+    let Szemtorus
+    let Szemgeometry;
+    let Szemmaterial;
+    let Szemtorus1
+    let Szemgeometry1;
+    let Szemmaterial1;
+    let NapGeometry;
+    let NapMaterial;
+    let NapMesh;
+
+    init();
+
+    // Csak egyszeri állókép rajzolása
+    // render();
+
+    // Animáció indítása
+    animate();
+
+    function init() {
+        // Böngésző ablakméret lekérése és méretarány számítása
+        HEIGHT = window.innerHeight;
+        WIDTH = window.innerWidth;
+        aspectRatio = WIDTH / HEIGHT;
+
+        // Renderer létrehozása és DOM-hoz adása
+        renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setSize( WIDTH, HEIGHT );
+        renderer.setClearColor( 0x000000 );
+        document.body.appendChild( renderer.domElement );
+        renderer.shadowMap.enabled = true;
+
+        // Színtér létrehozása
+        scene = new THREE.Scene();
+
+        // Kamera létrehozása és vetítési paramétereinek beállítása
+        camera = new THREE.PerspectiveCamera( 75, aspectRatio, 0.1, 10000 );
+        camera.position.z = 15;
+        camera.lookAt( scene.position );
+
+        // 3D felszínháló létrehozása: geometria és anyag összerendelése
+
+        // Kamera vezérlés
+        controls = new TrackballControls( camera, renderer.domElement );
+        controls.rotateSpeed = 5.0;
+        controls.panSpeed = 1.0;
+
+
+        cylGeometry = new THREE.CylinderGeometry( 0.4, 0.5, 1, 8 );
+        cylMaterial = new THREE.MeshPhongMaterial( { color: 0x472501, wireframe: false } );
+        cylMesh = new THREE.Mesh( cylGeometry, cylMaterial );
+        cylMesh.rotation.z = 3.1;
+        cylMesh.position.set( 21, 2.8, 0 );
+
+        cylGeometry2 = new THREE.CylinderGeometry( 0.4, 0.5, 1, 8 );
+        cylMaterial2 = new THREE.MeshPhongMaterial( { color: 0x472501, wireframe: false } );
+        cylMesh2 = new THREE.Mesh( cylGeometry2, cylMaterial2 );
+        cylMesh2.rotation.z = 3.1;
+        cylMesh2.position.set( 19, 2.8, 0 );
+
+        cylGeometry3 = new THREE.CylinderGeometry( 0.4, 0.5, 1, 8 );
+        cylMaterial3 = new THREE.MeshPhongMaterial( { color: 0x472501, wireframe: false } );
+        cylMesh3 = new THREE.Mesh( cylGeometry3, cylMaterial3 );
+        cylMesh3.rotation.z = 3.1;
+        cylMesh3.position.set( 17, 2.8, 0 );
+
+        cylGeometry4 = new THREE.CylinderGeometry( 0.5, 0.5, 7, 8 );
+        cylMaterial4 = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, wireframe: false } );
+        cylMesh4 = new THREE.Mesh( cylGeometry4, cylMaterial4 );
+        cylMesh4.rotation.z = 0;
+        cylMesh4.position.set( 21, -1, 0 );
+
+        cylGeometry5 = new THREE.CylinderGeometry( 0.5, 0.5, 7, 8 );
+        cylMaterial5 = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, wireframe: false } );
+        cylMesh5 = new THREE.Mesh( cylGeometry5, cylMaterial5 );
+        cylMesh5.rotation.z = 0;
+        cylMesh5.position.set( 19, -1, 0 );
+
+        cylGeometry6 = new THREE.CylinderGeometry( 0.5, 0.5, 7, 8 );
+        cylMaterial6 = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, wireframe: false } );
+        cylMesh6 = new THREE.Mesh( cylGeometry6, cylMaterial6 );
+        cylMesh6.rotation.z = 0;
+        cylMesh6.position.set( 17, -1, 0 );
+
+        cylGeometry7 = new THREE.CylinderGeometry( 0.5, 0.5, 6.5, 8 );
+        cylMaterial7 = new THREE.MeshPhongMaterial( { color: 0xCC0000, wireframe: false } );
+        cylMesh7 = new THREE.Mesh( cylGeometry7, cylMaterial7 );
+        cylMesh7.rotation.z = 0;
+        cylMesh7.position.set( 21, -1, 0 );
+
+        cylGeometry8 = new THREE.CylinderGeometry( 0.5, 0.5, 6.5, 8 );
+        cylMaterial8 = new THREE.MeshPhongMaterial( { color: 0xE725C7, wireframe: false } );
+        cylMesh8 = new THREE.Mesh( cylGeometry8, cylMaterial8 );
+        cylMesh8.rotation.z = 0;
+        cylMesh8.position.set( 19, -1, 0 );
+
+        cylGeometry9 = new THREE.CylinderGeometry( 0.5, 0.5, 6.5, 8 );
+        cylMaterial9 = new THREE.MeshPhongMaterial( { color: 0xF07501, wireframe: false } );
+        cylMesh9 = new THREE.Mesh( cylGeometry9, cylMaterial9 );
+        cylMesh9.rotation.z = 0;
+        cylMesh9.position.set( 17, -1, 0 );
+
+        uvegcsetartoGeometry = new THREE.BoxGeometry( 9, 0.5, 1 );
+        uvegcsetartoMaterial = new THREE.MeshPhongMaterial( { color: 0xCA8841, wireframe: false } );
+        uvegcsetartoMesh = new THREE.Mesh( uvegcsetartoGeometry, uvegcsetartoMaterial );
+        uvegcsetartoMesh.rotation.z = 0;
+        uvegcsetartoMesh.position.set( 18, -4.4, 0 );
+
+        uvegcsetartoGeometry2 = new THREE.BoxGeometry( 9, 0.5, 1 );
+        uvegcsetartoMaterial2 = new THREE.MeshPhongMaterial( { color: 0xCA8841, wireframe: false } );
+        uvegcsetartoMesh2 = new THREE.Mesh( uvegcsetartoGeometry2, uvegcsetartoMaterial2 );
+        uvegcsetartoMesh2.rotation.z = 0;
+        uvegcsetartoMesh2.position.set( 18, -0.4, 0 );
+
+        uvegcsetartoGeometry3 = new THREE.BoxGeometry( 8, 0.5, 1 );
+        uvegcsetartoMaterial3 = new THREE.MeshPhongMaterial( { color: 0xCA8841, wireframe: false } );
+        uvegcsetartoMesh3 = new THREE.Mesh( uvegcsetartoGeometry3, uvegcsetartoMaterial3 );
+        uvegcsetartoMesh3.rotation.z = 1.55;
+        uvegcsetartoMesh3.position.set( 22.5, -0.8, 0 );
+
+        uvegcsetartoGeometry4 = new THREE.BoxGeometry( 8, 0.5, 1 );
+        uvegcsetartoMaterial4 = new THREE.MeshPhongMaterial( { color: 0xCA8841, wireframe: false } );
+        uvegcsetartoMesh4 = new THREE.Mesh( uvegcsetartoGeometry4, uvegcsetartoMaterial4 );
+        uvegcsetartoMesh4.rotation.z = 1.55;
+        uvegcsetartoMesh4.position.set( 13.5, -0.8, 0);
+
+        cylGeometry10 = new THREE.CylinderGeometry( 0.5, 0.5, 7, 8 );
+        cylMaterial10 = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, wireframe: false } );
+        cylMesh10 = new THREE.Mesh( cylGeometry10, cylMaterial10 );
+        cylMesh10.rotation.z = 0;
+        cylMesh10.position.set( 15, -1, 0 );
+
+        cylGeometry11 = new THREE.CylinderGeometry( 0.5, 0.5, 6.5, 8 );
+        cylMaterial11 = new THREE.MeshPhongMaterial( { color: 0x2929FF, wireframe: false } );
+        cylMesh11 = new THREE.Mesh( cylGeometry11, cylMaterial11 );
+        cylMesh11.rotation.z = 0;
+        cylMesh11.position.set( 15, -1, 0 );
+
+        mesh = new THREE.Mesh( geometry, material );
+        cylGeometry12 = new THREE.CylinderGeometry( 0.4, 0.5, 1, 8 );
+        cylMaterial12 = new THREE.MeshPhongMaterial( { color: 0x472501, wireframe: false } );
+        cylMesh12 = new THREE.Mesh( cylGeometry12, cylMaterial12 );
+        cylMesh12.rotation.z = 3.1;
+        cylMesh12.position.set( 15, 3, 0 );
+        //asztal
+        boxGeometry = new THREE.BoxGeometry( 60, 1, 12 );
+        boxMaterial = new THREE.MeshPhongMaterial( { color: 0xA56E35, wireframe: false } );
+        boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+        boxMesh.position.set( 0, -5.5, 1 );
+        //labai
+        boxGeometry1 = new THREE.BoxGeometry( 16, 1, 1 );
+        boxMaterial1 = new THREE.MeshPhongMaterial( { color: 0xA56E35, wireframe: false } );
+        boxMesh1 = new THREE.Mesh( boxGeometry1, boxMaterial1 );
+        boxMesh1.position.set( 25, -13, 4 );
+        boxMesh1.rotation.z = 1.56;
+
+        boxGeometry2 = new THREE.BoxGeometry( 16, 1, 1 );
+        boxMaterial2 = new THREE.MeshPhongMaterial( { color: 0xA56E35, wireframe: false } );
+        boxMesh2 = new THREE.Mesh( boxGeometry2, boxMaterial2 );
+        boxMesh2.position.set( -25, -13, -4 );
+        boxMesh2.rotation.z = 1.56;
+
+        boxGeometry3 = new THREE.BoxGeometry( 16, 1, 1 );
+        boxMaterial3 = new THREE.MeshPhongMaterial( { color: 0xA56E35, wireframe: false } );
+        boxMesh3 = new THREE.Mesh( boxGeometry3, boxMaterial3 );
+        boxMesh3.position.set( 25, -13, -4.5 );
+        boxMesh3.rotation.z = 1.56;
+
+        boxGeometry4 = new THREE.BoxGeometry( 16, 1, 1 );
+        boxMaterial4 = new THREE.MeshPhongMaterial( { color: 0xA56E35, wireframe: false } );
+        boxMesh4 = new THREE.Mesh( boxGeometry4, boxMaterial4 );
+        boxMesh4.position.set( -25, -13, 4.5 );
+        boxMesh4.rotation.z = 1.56;
+
+        //GyertyaAzAsztalra
+        //Gyertya1
+        const Gyertya1Geometry = new THREE.CylinderGeometry(1, 1, 4, 32);
+        const Gyertya1Material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+        const Gyertya1 = new THREE.Mesh(Gyertya1Geometry, Gyertya1Material);
+        Gyertya1.position.set(8, -3, 6);
+
+        // Láng1
+
+        const Lang1Geometry = new THREE.ConeGeometry(1, 3, 16);
+        const Lang1Material = new THREE.MeshLambertMaterial({ color: 0xFFD700 });
+        const Lang1 = new THREE.Mesh(Lang1Geometry, Lang1Material);
+        Lang1.position.set(8, -1, 6);
+
+        //Gyertya2
+        const Gyertya2Geometry = new THREE.CylinderGeometry(1, 1, 4, 32);
+        const Gyertya2Material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+        const Gyertya2 = new THREE.Mesh(Gyertya2Geometry, Gyertya2Material);
+        Gyertya2.position.set(-8, -3, 6);
+
+        // Láng2
+        const Lang2Geometry = new THREE.ConeGeometry(1, 3, 16);
+        const Lang2Material = new THREE.MeshLambertMaterial({ color: 0xFFD700 });
+        const Lang2 = new THREE.Mesh(Lang2Geometry, Lang2Material);
+        Lang2.position.set(-8, -1, 6);
+
+        //ambiens fény
+        let ambiensFeny = new THREE.AmbientLight( 0xc58c85, 2.50 );
+        scene.add( ambiensFeny );
+        //pont fény
+        let pontFeny = new THREE.PointLight( 0xff0015, 18,20,2 );
+        pontFeny.position.set( 8, -1, 6 );
+        pontFeny.castShadow = true;
+        let pontFeny2 = new THREE.PointLight( 0x00FF00, 18,20,2 );
+        pontFeny2.position.set( -8, -1, 6 );
+        pontFeny2.castShadow = true;
+
+        //Gyertya3
+        const Gyertya3Geometry = new THREE.CylinderGeometry(1, 1, 4, 32);
+        const Gyertya3Material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+        const Gyertya3 = new THREE.Mesh(Gyertya2Geometry, Gyertya2Material);
+        Gyertya3.position.set(28, -3, 6);
+
+        // Láng3
+        const Lang3Geometry = new THREE.ConeGeometry(1, 3, 16);
+        const Lang3Material = new THREE.MeshLambertMaterial({ color: 0xFFD700 });
+        const Lang3 = new THREE.Mesh(Lang3Geometry, Lang3Material);
+        Lang3.position.set(28, -1, 6);
+
+        let iranyFeny = new THREE.DirectionalLight( 0x00ffff, 1 );
+        iranyFeny.position.set( 28, -1, 6 );
+        iranyFeny.target = uvegcsetartoMesh;
+        iranyFeny.castShadow = true;
+
+        //Reflektorfény
+        let ReflektorFeny = new THREE.SpotLight( 0x00ffff, 1 );
+        ReflektorFeny.position.set( 28, -1, 6 );
+        ReflektorFeny.angle = Math.PI / 3;
+        ReflektorFeny.target = uvegcsetartoMesh;
+        ReflektorFeny.castShadow = true;
+
+        sphereGeometry = new THREE.SphereGeometry( 5, 30, 360, 1, Math.PI * 2, 2.5, 2 );
+        sphereMaterial = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        sphereMesh = new THREE.Mesh( sphereGeometry, sphereMaterial );
+
+        mesh = new THREE.Mesh( geometry, material );
+        cylGeometry13 = new THREE.CylinderGeometry( 0.8, 0.5, 2.5, 8 );
+        cylMaterial13 = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        cylMesh13 = new THREE.Mesh( cylGeometry13, cylMaterial13 );
+        cylMesh13.rotation.z = 0.5;
+        cylMesh13.position.set( 3.5, -4, 2 );
+        cylGeometry14 = new THREE.CylinderGeometry( 0.8, 0.5, 2.5, 8 );
+        cylMaterial14 = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        cylMesh14 = new THREE.Mesh( cylGeometry14, cylMaterial14 );
+        cylMesh14.rotation.z = 5.5;
+        cylMesh14.position.set( -3.5, -4, 2 );
+        cylGeometry15 = new THREE.CylinderGeometry( 0.8, 0.5, 2.5, 8 );
+        cylMaterial15 = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        cylMesh15 = new THREE.Mesh( cylGeometry15, cylMaterial15 );
+        cylMesh15.rotation.z = 6.2;
+        cylMesh15.position.set( 0, -4, -3.5 );
+        cylGeometry16 = new THREE.CylinderGeometry( 3.5, 4.85, 4, 360 );
+        cylMaterial16 = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        cylMesh16 = new THREE.Mesh( cylGeometry16, cylMaterial16 );
+        cylMesh16.position.set( 0, 0.9, 0 );
+        cylGeometry17 = new THREE.CylinderGeometry( 4, 3.5, 1, 360 );
+        cylMaterial17 = new THREE.MeshPhongMaterial( { color: 0x2D2D2D, wireframe: false } );
+        cylMesh17 = new THREE.Mesh( cylGeometry17, cylMaterial17 );
+        cylMesh17.position.set( 0, 3, 0 );
+
+        //Harry Potter
+        //torzse
+        cylGeometry18 = new THREE.CylinderGeometry( 6, 6, 15, 360 );
+        cylMaterial18 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh18 = new THREE.Mesh( cylGeometry18, cylMaterial18 );
+        cylMesh18.position.set( 0, -1, -14 );
+        //laba
+        cylGeometry19 = new THREE.CylinderGeometry( 1, 1, 14, 360 );
+        cylMaterial19 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh19 = new THREE.Mesh( cylGeometry19, cylMaterial19 );
+        cylMesh19.position.set( 3, -15, -14 );
+        cylGeometry20 = new THREE.CylinderGeometry( 1, 1, 14, 360 );
+        cylMaterial20 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh20 = new THREE.Mesh( cylGeometry20, cylMaterial20 );
+        cylMesh20.position.set( -3, -15, -14 );
+        //keze
+        cylGeometry21 = new THREE.CylinderGeometry( 1, 1, 14, 360 );
+        cylMaterial21 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh21 = new THREE.Mesh( cylGeometry21, cylMaterial21 );
+        cylMesh21.rotation.z = 1;
+        cylMesh21.position.set( -11, 6, -14 );
+        cylGeometry22 = new THREE.CylinderGeometry( 1, 1, 14, 360 );
+        cylMaterial22 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh22 = new THREE.Mesh( cylGeometry22, cylMaterial22 );
+        cylMesh22.rotation.z = 2;
+        cylMesh22.position.set( 11, 6, -14 );
+        //nyaka
+        cylGeometry23 = new THREE.CylinderGeometry( 1, 1, 5, 360 );
+        cylMaterial23 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        cylMesh23 = new THREE.Mesh( cylGeometry23, cylMaterial23 );
+        cylMesh23.position.set( 0, 7, -14 );
+        //feje
+        sphereGeometry1 = new THREE.SphereGeometry( 5, 30, 30);
+        sphereMaterial1 = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        sphereMesh1 = new THREE.Mesh( sphereGeometry1, sphereMaterial1 );
+        sphereMesh1.position.set( 0, 14, -14 );
+        //szemei
+        Szemgeometry = new THREE.TorusGeometry( 0.1, 1, 16, 10  );
+        Szemmaterial = new THREE.MeshPhongMaterial( { color: 0x38761D } );
+        Szemtorus = new THREE.Mesh( Szemgeometry, Szemmaterial );
+        Szemtorus.position.set( 3, 14, -10 );
+        Szemgeometry1 = new THREE.TorusGeometry( 0.1, 1, 16, 10 );
+        Szemmaterial1 = new THREE.MeshPhongMaterial( { color: 0x38761D } );
+        Szemtorus1 = new THREE.Mesh( Szemgeometry1, Szemmaterial1 );
+        Szemtorus1.position.set( -3, 14, -10 );
+
+        //szaja
+        boxGeometry5 = new THREE.BoxGeometry( 2, 1, 0.5 );
+        boxMaterial5 = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, wireframe: false } );
+        boxMesh5 = new THREE.Mesh( boxGeometry5, boxMaterial5 );
+        boxMesh5.position.set( 0, 11, -10 );
+
+        //nap
+        NapGeometry = new THREE.SphereGeometry( 40, 30, 30);
+        NapMaterial = new THREE.MeshPhongMaterial( { color: 0xF4C798, wireframe: false } );
+        NapMesh = new THREE.Mesh( NapGeometry, NapMaterial );
+        NapMesh.position.set( 40, 2000, 0 );
+        let NapFeny = new THREE.PointLight( 0xF4D772, 18,1000,2 );
+        NapFeny.position.set( 40, 2000, 0 );
+        NapFeny.castShadow = true;
+        scene.add(NapMesh);
+        scene.add(NapFeny);
+
+        //epulet
+        let AlkimistaTeremTalajGeometry;
+        let AlkimistaTeremTalajMaterial;
+        let AlkimistaTeremTalajMesh;
+        AlkimistaTeremTalajGeometry = new THREE.BoxGeometry( 300, 1.5, 400 );
+        AlkimistaTeremTalajMaterial = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        AlkimistaTeremTalajMesh = new THREE.Mesh( AlkimistaTeremTalajGeometry, AlkimistaTeremTalajMaterial );
+        AlkimistaTeremTalajMesh.position.set( -60, -22, 50 );
+        scene.add(AlkimistaTeremTalajMesh);
+        //epuletFalai
+        let AlkimistaTeremFal01Geometry;
+        let AlkimistaTeremFal01Material;
+        let AlkimistaTeremFal01Mesh;
+        AlkimistaTeremFal01Geometry = new THREE.BoxGeometry( 1, 120, 400 );
+        AlkimistaTeremFal01Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        AlkimistaTeremFal01Mesh = new THREE.Mesh( AlkimistaTeremFal01Geometry, AlkimistaTeremFal01Material );
+        AlkimistaTeremFal01Mesh.position.set( -209.5, 38, 50 );
+        scene.add(AlkimistaTeremFal01Mesh);
+        let AlkimistaTeremFal02Geometry;
+        let AlkimistaTeremFal02Material;
+        let AlkimistaTeremFal02Mesh;
+        AlkimistaTeremFal02Geometry = new THREE.BoxGeometry( 1, 120, 400 );
+        AlkimistaTeremFal02Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        AlkimistaTeremFal02Mesh = new THREE.Mesh( AlkimistaTeremFal02Geometry, AlkimistaTeremFal02Material );
+        AlkimistaTeremFal02Mesh.position.set( 89.5, 38, 50 );
+        scene.add(AlkimistaTeremFal02Mesh);
+        let AlkimistaTeremFal03Geometry;
+        let AlkimistaTeremFal03Material;
+        let AlkimistaTeremFal03Mesh;
+        AlkimistaTeremFal03Geometry = new THREE.BoxGeometry( 300, 120, 1 );
+        AlkimistaTeremFal03Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        AlkimistaTeremFal03Mesh = new THREE.Mesh( AlkimistaTeremFal03Geometry, AlkimistaTeremFal03Material );
+        AlkimistaTeremFal03Mesh.position.set( -60, 38, -150 );
+        scene.add(AlkimistaTeremFal03Mesh);
+        let AlkimistaTeremFal04Geometry;
+        let AlkimistaTeremFal04Material;
+        let AlkimistaTeremFal04MaterialMesh;
+        AlkimistaTeremFal04Geometry = new THREE.BoxGeometry( 300, 120, 1 );
+        AlkimistaTeremFal04Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        AlkimistaTeremFal04MaterialMesh = new THREE.Mesh( AlkimistaTeremFal04Geometry, AlkimistaTeremFal04Material );
+        AlkimistaTeremFal04MaterialMesh.position.set( -60, 38, 250 );
+        scene.add(AlkimistaTeremFal04MaterialMesh);
+        //epuletAjto
+        let AlkimistaTeremAjtoGeometry;
+        let AlkimistaTeremAjtoMaterial;
+        let AlkimistaTeremAjtoMaterialMesh;
+        AlkimistaTeremAjtoGeometry = new THREE.BoxGeometry( 2, 70, 60 );
+        AlkimistaTeremAjtoMaterial = new THREE.MeshPhongMaterial( { color: 0x4E3524, wireframe: false } );
+        AlkimistaTeremAjtoMaterialMesh = new THREE.Mesh( AlkimistaTeremAjtoGeometry, AlkimistaTeremAjtoMaterial );
+        AlkimistaTeremAjtoMaterialMesh.position.set( -209.5, 12.5, -40 );
+        scene.add(AlkimistaTeremAjtoMaterialMesh);
+
+        //Hogsmade vasutallomas
+        let HogsmadeVasutallomasPeronGeometry;
+        let HogsmadeVasutallomasPeronMaterial;
+        let HogsmadeVasutallomasPeronMesh;
+        HogsmadeVasutallomasPeronGeometry = new THREE.BoxGeometry( 300, 80, 3000 );
+        HogsmadeVasutallomasPeronMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasPeronMesh = new THREE.Mesh( HogsmadeVasutallomasPeronGeometry, HogsmadeVasutallomasPeronMaterial );
+        HogsmadeVasutallomasPeronMesh.position.set( -4000, 38, 250 );
+        scene.add(HogsmadeVasutallomasPeronMesh);
+        let HogsmadeVasutallomasPeron2Geometry;
+        let HogsmadeVasutallomasPeron2Material;
+        let HogsmadeVasutallomasPeron2Mesh;
+        HogsmadeVasutallomasPeron2Geometry = new THREE.BoxGeometry( 200, 80, 600 );
+        HogsmadeVasutallomasPeron2Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasPeron2Mesh = new THREE.Mesh( HogsmadeVasutallomasPeron2Geometry, HogsmadeVasutallomasPeron2Material );
+        HogsmadeVasutallomasPeron2Mesh.position.set( -3050, 38, 250 );
+        scene.add(HogsmadeVasutallomasPeron2Mesh);
+        let HogsmadeVasutallomasPeron3Geometry;
+        let HogsmadeVasutallomasPeron3Material;
+        let HogsmadeVasutallomasPeron3Mesh;
+        HogsmadeVasutallomasPeron3Geometry = new THREE.BoxGeometry( 300, 20, 1400 );
+        HogsmadeVasutallomasPeron3Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasPeron3Mesh = new THREE.Mesh( HogsmadeVasutallomasPeron3Geometry, HogsmadeVasutallomasPeron3Material );
+        HogsmadeVasutallomasPeron3Mesh.position.set( -4000, 300, 250 );
+        scene.add(HogsmadeVasutallomasPeron3Mesh);
+        //lepcsok
+        let HogsmadeVasutallomasLepcsoGeometry;
+        let HogsmadeVasutallomasLepcsoMaterial;
+        let HogsmadeVasutallomasLepcsoMesh;
+        HogsmadeVasutallomasLepcsoGeometry = new THREE.BoxGeometry( 35, 50, 600 );
+        HogsmadeVasutallomasLepcsoMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasLepcsoMesh = new THREE.Mesh( HogsmadeVasutallomasLepcsoGeometry, HogsmadeVasutallomasLepcsoMaterial );
+        HogsmadeVasutallomasLepcsoMesh.position.set( -2935, 23, 250 );
+        scene.add(HogsmadeVasutallomasLepcsoMesh);
+        let HogsmadeVasutallomasLepcso2Geometry;
+        let HogsmadeVasutallomasLepcso2Material;
+        let HogsmadeVasutallomasLepcso2Mesh;
+        HogsmadeVasutallomasLepcso2Geometry = new THREE.BoxGeometry( 35, 20, 600 );
+        HogsmadeVasutallomasLepcso2Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasLepcso2Mesh = new THREE.Mesh( HogsmadeVasutallomasLepcso2Geometry, HogsmadeVasutallomasLepcso2Material );
+        HogsmadeVasutallomasLepcso2Mesh.position.set( -2900, 8, 250 );
+        scene.add(HogsmadeVasutallomasLepcso2Mesh);
+
+        teto();
+        //SinekAlatt
+        let HogsmadeVasutallomasSinekAlattGeometry;
+        let HogsmadeVasutallomasSinekAlattMaterial;
+        let HogsmadeVasutallomasSinekAlattMesh;
+        HogsmadeVasutallomasSinekAlattGeometry = new THREE.BoxGeometry( 300, 24, 15000 );
+        HogsmadeVasutallomasSinekAlattMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasSinekAlattMesh = new THREE.Mesh( HogsmadeVasutallomasSinekAlattGeometry, HogsmadeVasutallomasSinekAlattMaterial );
+        HogsmadeVasutallomasSinekAlattMesh.position.set( -4300, 10, 3000 );
+        scene.add(HogsmadeVasutallomasSinekAlattMesh);
+        //Sinek
+        let HogsmadeVasutallomasSin1Geometry;
+        let HogsmadeVasutallomasSin1Material;
+        let HogsmadeVasutallomasSin1Mesh;
+        HogsmadeVasutallomasSin1Geometry = new THREE.BoxGeometry( 15, 30, 15000 );
+        HogsmadeVasutallomasSin1Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasSin1Mesh = new THREE.Mesh( HogsmadeVasutallomasSin1Geometry, HogsmadeVasutallomasSin1Material );
+        HogsmadeVasutallomasSin1Mesh.position.set( -4380, 30, 3000 );
+        scene.add(HogsmadeVasutallomasSin1Mesh);
+        let HogsmadeVasutallomasSin2Geometry;
+        let HogsmadeVasutallomasSin2Material;
+        let HogsmadeVasutallomasSin2Mesh;
+        HogsmadeVasutallomasSin2Geometry = new THREE.BoxGeometry( 15, 30, 15000 );
+        HogsmadeVasutallomasSin2Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasSin2Mesh = new THREE.Mesh( HogsmadeVasutallomasSin2Geometry, HogsmadeVasutallomasSin2Material );
+        HogsmadeVasutallomasSin2Mesh.position.set( -4200, 30, 3000 );
+        scene.add(HogsmadeVasutallomasSin2Mesh);
+        //Hogsmade Állomás épülete
+        let HogsmadeVasutallomasFal1Geometry;
+        let HogsmadeVasutallomasFal1Material;
+        let HogsmadeVasutallomasFal1Mesh;
+        HogsmadeVasutallomasFal1Geometry = new THREE.BoxGeometry( 3, 700, 1400 );
+        HogsmadeVasutallomasFal1Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasFal1Mesh = new THREE.Mesh( HogsmadeVasutallomasFal1Geometry, HogsmadeVasutallomasFal1Material );
+        HogsmadeVasutallomasFal1Mesh.position.set( -3850, 425, 250 );
+        scene.add(HogsmadeVasutallomasFal1Mesh);
+        let HogsmadeVasutallomasFal2Geometry;
+        let HogsmadeVasutallomasFal2Material;
+        let HogsmadeVasutallomasFal2Mesh;
+        HogsmadeVasutallomasFal2Geometry = new THREE.BoxGeometry( 3, 700, 1400 );
+        HogsmadeVasutallomasFal2Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasFal2Mesh = new THREE.Mesh( HogsmadeVasutallomasFal2Geometry, HogsmadeVasutallomasFal2Material );
+        HogsmadeVasutallomasFal2Mesh.position.set( -3150, 425, 250 );
+        scene.add(HogsmadeVasutallomasFal2Mesh);
+        let HogsmadeVasutallomasFal3Geometry;
+        let HogsmadeVasutallomasFal3Material;
+        let HogsmadeVasutallomasFal3Mesh;
+        HogsmadeVasutallomasFal3Geometry = new THREE.BoxGeometry( 700, 700, 3 );
+        HogsmadeVasutallomasFal3Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasFal3Mesh = new THREE.Mesh( HogsmadeVasutallomasFal3Geometry, HogsmadeVasutallomasFal3Material );
+        HogsmadeVasutallomasFal3Mesh.position.set( -3500, 425, 950 );
+        scene.add(HogsmadeVasutallomasFal3Mesh);
+        let HogsmadeVasutallomasFal4Geometry;
+        let HogsmadeVasutallomasFal4Material;
+        let HogsmadeVasutallomasFal4Mesh;
+        HogsmadeVasutallomasFal4Geometry = new THREE.BoxGeometry( 700, 700, 3 );
+        HogsmadeVasutallomasFal4Material = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasFal4Mesh = new THREE.Mesh( HogsmadeVasutallomasFal4Geometry, HogsmadeVasutallomasFal4Material );
+        HogsmadeVasutallomasFal4Mesh.position.set( -3500, 425, -450 );
+        scene.add(HogsmadeVasutallomasFal4Mesh);
+        //padlo
+        let HogsmadeVasutallomasPadloGeometry;
+        let HogsmadeVasutallomasPadloMaterial;
+        let HogsmadeVasutallomasPadloMesh;
+        HogsmadeVasutallomasPadloGeometry = new THREE.BoxGeometry( 700, 80, 1400 );
+        HogsmadeVasutallomasPadloMaterial = new THREE.MeshPhongMaterial( { color: 0x2E3033, wireframe: false } );
+        HogsmadeVasutallomasPadloMesh = new THREE.Mesh( HogsmadeVasutallomasPadloGeometry, HogsmadeVasutallomasPadloMaterial );
+        HogsmadeVasutallomasPadloMesh.position.set( -3500, 38, 250 );
+        scene.add(HogsmadeVasutallomasPadloMesh);
+        ajtok();
+        ablakok();
+
+        //Tereptárgyak
+        //Hid
+        let HogsmadeVasutallomasHidGeometry;
+        let HogsmadeVasutallomasHidMaterial;
+        let HogsmadeVasutallomasHidMesh;
+        HogsmadeVasutallomasHidGeometry = new THREE.BoxGeometry( 300, 40, 2000 );
+        HogsmadeVasutallomasHidMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidMesh = new THREE.Mesh( HogsmadeVasutallomasHidGeometry, HogsmadeVasutallomasHidMaterial );
+        HogsmadeVasutallomasHidMesh.position.set( -4300, -20, 8000 );
+        scene.add(HogsmadeVasutallomasHidMesh);
+        let HogsmadeVasutallomasHid1Geometry;
+        let HogsmadeVasutallomasHid1Material;
+        let HogsmadeVasutallomasHid1Mesh;
+        HogsmadeVasutallomasHid1Geometry = new THREE.BoxGeometry( 300, 40, 1700 );
+        HogsmadeVasutallomasHid1Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHid1Mesh = new THREE.Mesh( HogsmadeVasutallomasHid1Geometry, HogsmadeVasutallomasHid1Material );
+        HogsmadeVasutallomasHid1Mesh.position.set( -4300, -50, 8000 );
+        scene.add(HogsmadeVasutallomasHid1Mesh);
+        //HidLabai
+        let HogsmadeVasutallomasHidLab1Geometry;
+        let HogsmadeVasutallomasHidLab1Material;
+        let HogsmadeVasutallomasHidLab1Mesh;
+        HogsmadeVasutallomasHidLab1Geometry = new THREE.BoxGeometry( 300, 600, 50 );
+        HogsmadeVasutallomasHidLab1Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidLab1Mesh = new THREE.Mesh( HogsmadeVasutallomasHidLab1Geometry, HogsmadeVasutallomasHidLab1Material );
+        HogsmadeVasutallomasHidLab1Mesh.position.set( -4300, -340, 8600 );
+        scene.add(HogsmadeVasutallomasHidLab1Mesh);
+        let HogsmadeVasutallomasHidLab2Geometry;
+        let HogsmadeVasutallomasHidLab2Material;
+        let HogsmadeVasutallomasHidLab2Mesh;
+        HogsmadeVasutallomasHidLab2Geometry = new THREE.BoxGeometry( 300, 800, 50 );
+        HogsmadeVasutallomasHidLab2Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidLab2Mesh = new THREE.Mesh( HogsmadeVasutallomasHidLab2Geometry, HogsmadeVasutallomasHidLab2Material );
+        HogsmadeVasutallomasHidLab2Mesh.position.set( -4300, -400, 8300 );
+        scene.add(HogsmadeVasutallomasHidLab2Mesh);
+        let HogsmadeVasutallomasHidLab3Geometry;
+        let HogsmadeVasutallomasHidLab3Material;
+        let HogsmadeVasutallomasHidLab3Mesh;
+        HogsmadeVasutallomasHidLab3Geometry = new THREE.BoxGeometry( 300, 850, 50 );
+        HogsmadeVasutallomasHidLab3Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidLab3Mesh = new THREE.Mesh( HogsmadeVasutallomasHidLab3Geometry, HogsmadeVasutallomasHidLab3Material );
+        HogsmadeVasutallomasHidLab3Mesh.position.set( -4300, -450, 8000 );
+        scene.add(HogsmadeVasutallomasHidLab3Mesh);
+        let HogsmadeVasutallomasHidLab4Geometry;
+        let HogsmadeVasutallomasHidLab4Material;
+        let HogsmadeVasutallomasHidLab4Mesh;
+        HogsmadeVasutallomasHidLab4Geometry = new THREE.BoxGeometry( 300, 800, 50 );
+        HogsmadeVasutallomasHidLab4Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidLab4Mesh = new THREE.Mesh( HogsmadeVasutallomasHidLab4Geometry, HogsmadeVasutallomasHidLab4Material );
+        HogsmadeVasutallomasHidLab4Mesh.position.set( -4300, -400, 7700 );
+        scene.add(HogsmadeVasutallomasHidLab4Mesh);
+        let HogsmadeVasutallomasHidLab5Geometry;
+        let HogsmadeVasutallomasHidLab5Material;
+        let HogsmadeVasutallomasHidLab5Mesh;
+        HogsmadeVasutallomasHidLab5Geometry = new THREE.BoxGeometry( 300, 600, 50 );
+        HogsmadeVasutallomasHidLab5Material = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasHidLab5Mesh = new THREE.Mesh( HogsmadeVasutallomasHidLab5Geometry, HogsmadeVasutallomasHidLab5Material );
+        HogsmadeVasutallomasHidLab5Mesh.position.set( -4300, -340, 7400 );
+        scene.add(HogsmadeVasutallomasHidLab5Mesh);
+
+        let HogsmadeVasutallomasLampaGeometry;
+        let HogsmadeVasutallomasLampaMaterial;
+        let HogsmadeVasutallomasLampaMesh;
+        HogsmadeVasutallomasLampaGeometry = new THREE.BoxGeometry( 4, 220, 4 );
+        HogsmadeVasutallomasLampaMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, wireframe: false } );
+        HogsmadeVasutallomasLampaMesh = new THREE.Mesh( HogsmadeVasutallomasLampaGeometry, HogsmadeVasutallomasLampaMaterial );
+        HogsmadeVasutallomasLampaMesh.position.set( -3900, 140, 1400 );
+        scene.add(HogsmadeVasutallomasLampaMesh);
+        let HogsmadeVasutallomasLampaFejGeometry;
+        let HogsmadeVasutallomasLampaFejMaterial;
+        let HogsmadeVasutallomasLampaFejMesh;
+        HogsmadeVasutallomasLampaFejGeometry = new THREE.BoxGeometry( 15, 20, 15 );
+        HogsmadeVasutallomasLampaFejMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00, wireframe: false } );
+        HogsmadeVasutallomasLampaFejMesh = new THREE.Mesh( HogsmadeVasutallomasLampaFejGeometry, HogsmadeVasutallomasLampaFejMaterial );
+        HogsmadeVasutallomasLampaFejMesh.position.set( -3900, 250, 1400 );
+        scene.add(HogsmadeVasutallomasLampaFejMesh);
+        let LampaFeny = new THREE.PointLight( 0x0000FF, 20,50,2 );
+        LampaFeny.position.set( -3900, 250, 1400 );
+        LampaFeny.castShadow = true;
+        LampaFeny.receiveShadow = true;
+        scene.add(LampaFeny);
+
+        //Groupok
+        //Harry Potter
+        //Fej es nyak
+        const FejGroup = new THREE.Group();
+        FejGroup.add( boxMesh5 );
+        FejGroup.add( Szemtorus );
+        FejGroup.add( Szemtorus1 );
+        FejGroup.add( cylMesh23 );
+        FejGroup.add( sphereMesh1 );
+        //Torzs kezek es labak
+        const TorzsGroup = new THREE.Group();
+        TorzsGroup.add( cylMesh21 );
+        TorzsGroup.add( cylMesh22 );
+        TorzsGroup.add( cylMesh18 );
+        TorzsGroup.add( cylMesh19 );
+        TorzsGroup.add( cylMesh20 );
+
+        //Gyertyak
+        const Gyertya1Group = new THREE.Group();
+        Gyertya1Group.add( Gyertya1 );
+        Gyertya1Group.add( Lang1 );
+        const Gyertya2Group = new THREE.Group();
+        Gyertya2Group.add( Gyertya2 );
+        Gyertya2Group.add( Lang2 );
+        Gyertya2Group.add( pontFeny );
+        Gyertya2Group.add( pontFeny2 );
+        const Gyertya3Group = new THREE.Group();
+        Gyertya3Group.add( Gyertya3 );
+        Gyertya3Group.add( Lang3 );
+        Gyertya3Group.add( iranyFeny );
+        Gyertya3Group.add( ReflektorFeny );
+        //Asztal
+        const AsztalGroup = new THREE.Group();
+        AsztalGroup.add( boxMesh );
+        AsztalGroup.add( boxMesh1 );
+        AsztalGroup.add( boxMesh2 );
+        AsztalGroup.add( boxMesh3 );
+        AsztalGroup.add( boxMesh4 );
+        //Uvegcsetarto es uvegcsek
+        const UvegcsekGroup = new THREE.Group();
+        UvegcsekGroup.add( uvegcsetartoMesh );
+        UvegcsekGroup.add( uvegcsetartoMesh2 );
+        UvegcsekGroup.add( uvegcsetartoMesh3 );
+        UvegcsekGroup.add( uvegcsetartoMesh4 );
+        //negy parafadugo
+        UvegcsekGroup.add( cylMesh );
+        UvegcsekGroup.add( cylMesh2 );
+        UvegcsekGroup.add( cylMesh3 );
+        UvegcsekGroup.add( cylMesh12 );
+        //Uvegcsek
+        UvegcsekGroup.add( cylMesh4 );
+        UvegcsekGroup.add( cylMesh5 );
+        UvegcsekGroup.add( cylMesh6 );
+        UvegcsekGroup.add( cylMesh7 );
+        UvegcsekGroup.add( cylMesh8 );
+        UvegcsekGroup.add( cylMesh9 );
+        UvegcsekGroup.add( cylMesh10 );
+        UvegcsekGroup.add( cylMesh11 );
+        UvegcsekGroup.add( uvegcsetartoMesh3 );
+        //Uvegcse forgatás animáció
+        //Ust
+        const UstGroup = new THREE.Group();
+        UstGroup.add( cylMesh13 );
+        UstGroup.add( cylMesh14 );
+        UstGroup.add( cylMesh15 );
+        UstGroup.add( cylMesh16 );
+        UstGroup.add( cylMesh17 );
+        UstGroup.add( sphereMesh );
+
+        // Tárgy színtérhez adása
+        scene.add( FejGroup );
+        scene.add( TorzsGroup );
+        scene.add(Gyertya1Group);
+        scene.add(Gyertya2Group);
+        scene.add(Gyertya3Group);
+        scene.add(AsztalGroup);
+        scene.add(UvegcsekGroup);
+        scene.add(UstGroup);
+
+        scene.add( boxMesh );
+        // Az ablak későbbi átméretezése esetén visszahívható függvény megadása
+        window.addEventListener( 'resize', handleWindowResize, false );
+    }
+
+    function ajtok(){
+        //Ajto1
+        let HogsmadeVasutallomasAjto1Geometry;
+        let HogsmadeVasutallomasAjto1Material;
+        let HogsmadeVasutallomasAjto1Mesh;
+        HogsmadeVasutallomasAjto1Geometry = new THREE.BoxGeometry( 6, 120, 100 );
+        HogsmadeVasutallomasAjto1Material = new THREE.MeshPhongMaterial( { color: 0x800000, wireframe: false } );
+        HogsmadeVasutallomasAjto1Mesh = new THREE.Mesh( HogsmadeVasutallomasAjto1Geometry, HogsmadeVasutallomasAjto1Material );
+        HogsmadeVasutallomasAjto1Mesh.position.set( -3150, 140, 250 );
+        scene.add(HogsmadeVasutallomasAjto1Mesh);
+        //Ajto2
+        let HogsmadeVasutallomasAjto2Geometry;
+        let HogsmadeVasutallomasAjto2Material;
+        let HogsmadeVasutallomasAjto2Mesh;
+        HogsmadeVasutallomasAjto2Geometry = new THREE.BoxGeometry( 6, 120, 100 );
+        HogsmadeVasutallomasAjto2Material = new THREE.MeshPhongMaterial( { color: 0x800000, wireframe: false } );
+        HogsmadeVasutallomasAjto2Mesh = new THREE.Mesh( HogsmadeVasutallomasAjto2Geometry, HogsmadeVasutallomasAjto2Material );
+        HogsmadeVasutallomasAjto2Mesh.position.set( -3850, 140, 250 );
+        scene.add(HogsmadeVasutallomasAjto2Mesh);
+    }
+    function ablakok(){
+        let HogsmadeVasutallomasAblak1Geometry;
+        let HogsmadeVasutallomasAblak1Material;
+        let HogsmadeVasutallomasAblak1Mesh;
+        HogsmadeVasutallomasAblak1Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak1Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak1Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak1Geometry, HogsmadeVasutallomasAblak1Material );
+        HogsmadeVasutallomasAblak1Mesh.position.set( -3850, 180, 550 );
+        scene.add(HogsmadeVasutallomasAblak1Mesh);
+        let HogsmadeVasutallomasAblak2Geometry;
+        let HogsmadeVasutallomasAblak2Material;
+        let HogsmadeVasutallomasAblak2Mesh;
+        HogsmadeVasutallomasAblak2Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak2Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak2Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak2Geometry, HogsmadeVasutallomasAblak2Material );
+        HogsmadeVasutallomasAblak2Mesh.position.set( -3850, 180, 800 );
+        scene.add(HogsmadeVasutallomasAblak2Mesh);
+        let HogsmadeVasutallomasAblak3Geometry;
+        let HogsmadeVasutallomasAblak3Material;
+        let HogsmadeVasutallomasAblak3Mesh;
+        HogsmadeVasutallomasAblak3Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak3Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak3Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak3Geometry, HogsmadeVasutallomasAblak3Material );
+        HogsmadeVasutallomasAblak3Mesh.position.set( -3850, 600, 550 );
+        scene.add(HogsmadeVasutallomasAblak3Mesh);
+        let HogsmadeVasutallomasAblak4Geometry;
+        let HogsmadeVasutallomasAblak4Material;
+        let HogsmadeVasutallomasAblak4Mesh;
+        HogsmadeVasutallomasAblak4Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak4Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak4Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak4Geometry, HogsmadeVasutallomasAblak4Material );
+        HogsmadeVasutallomasAblak4Mesh.position.set( -3850, 600, 800 );
+        scene.add(HogsmadeVasutallomasAblak4Mesh);
+        let HogsmadeVasutallomasAblak5Geometry;
+        let HogsmadeVasutallomasAblak5Material;
+        let HogsmadeVasutallomasAblak5Mesh;
+        HogsmadeVasutallomasAblak5Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak5Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak5Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak5Geometry, HogsmadeVasutallomasAblak5Material );
+        HogsmadeVasutallomasAblak5Mesh.position.set( -3850, 600, -300 );
+        scene.add(HogsmadeVasutallomasAblak5Mesh);
+        let HogsmadeVasutallomasAblak6Geometry;
+        let HogsmadeVasutallomasAblak6Material;
+        let HogsmadeVasutallomasAblak6Mesh;
+        HogsmadeVasutallomasAblak6Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak6Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak6Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak6Geometry, HogsmadeVasutallomasAblak6Material );
+        HogsmadeVasutallomasAblak6Mesh.position.set( -3850, 600, -50 );
+        scene.add(HogsmadeVasutallomasAblak6Mesh);
+        let HogsmadeVasutallomasAblak7Geometry;
+        let HogsmadeVasutallomasAblak7Material;
+        let HogsmadeVasutallomasAblak7Mesh;
+        HogsmadeVasutallomasAblak7Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak7Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak7Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak7Geometry, HogsmadeVasutallomasAblak7Material );
+        HogsmadeVasutallomasAblak7Mesh.position.set( -3850, 180, -300 );
+        scene.add(HogsmadeVasutallomasAblak7Mesh);
+        let HogsmadeVasutallomasAblak8Geometry;
+        let HogsmadeVasutallomasAblak8Material;
+        let HogsmadeVasutallomasAblak8Mesh;
+        HogsmadeVasutallomasAblak8Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak8Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak8Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak8Geometry, HogsmadeVasutallomasAblak8Material );
+        HogsmadeVasutallomasAblak8Mesh.position.set( -3850, 180, -50 );
+        scene.add(HogsmadeVasutallomasAblak8Mesh);
+        let HogsmadeVasutallomasAblak9Geometry;
+        let HogsmadeVasutallomasAblak9Material;
+        let HogsmadeVasutallomasAblak9Mesh;
+        HogsmadeVasutallomasAblak9Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak9Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak9Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak9Geometry, HogsmadeVasutallomasAblak9Material );
+        HogsmadeVasutallomasAblak9Mesh.position.set( -3150, 180, -50 );
+        scene.add(HogsmadeVasutallomasAblak9Mesh);
+        let HogsmadeVasutallomasAblak10Geometry;
+        let HogsmadeVasutallomasAblak10Material;
+        let HogsmadeVasutallomasAblak10Mesh;
+        HogsmadeVasutallomasAblak10Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak10Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak10Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak10Geometry, HogsmadeVasutallomasAblak10Material );
+        HogsmadeVasutallomasAblak10Mesh.position.set( -3150, 180, -300 );
+        scene.add(HogsmadeVasutallomasAblak10Mesh);
+        let HogsmadeVasutallomasAblak11Geometry;
+        let HogsmadeVasutallomasAblak11Material;
+        let HogsmadeVasutallomasAblak11Mesh;
+        HogsmadeVasutallomasAblak11Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak11Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak11Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak11Geometry, HogsmadeVasutallomasAblak11Material );
+        HogsmadeVasutallomasAblak11Mesh.position.set( -3150, 600, -300 );
+        scene.add(HogsmadeVasutallomasAblak11Mesh);
+        let HogsmadeVasutallomasAblak12Geometry;
+        let HogsmadeVasutallomasAblak12Material;
+        let HogsmadeVasutallomasAblak12Mesh;
+        HogsmadeVasutallomasAblak12Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak12Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak12Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak12Geometry, HogsmadeVasutallomasAblak12Material );
+        HogsmadeVasutallomasAblak12Mesh.position.set( -3150, 600, -50 );
+        scene.add(HogsmadeVasutallomasAblak12Mesh);
+        let HogsmadeVasutallomasAblak13Geometry;
+        let HogsmadeVasutallomasAblak13Material;
+        let HogsmadeVasutallomasAblak13Mesh;
+        HogsmadeVasutallomasAblak13Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak13Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak13Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak13Geometry, HogsmadeVasutallomasAblak13Material );
+        HogsmadeVasutallomasAblak13Mesh.position.set( -3150, 600, 800 );
+        scene.add(HogsmadeVasutallomasAblak13Mesh);
+        let HogsmadeVasutallomasAblak14Geometry;
+        let HogsmadeVasutallomasAblak14Material;
+        let HogsmadeVasutallomasAblak14Mesh;
+        HogsmadeVasutallomasAblak14Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak14Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak14Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak14Geometry, HogsmadeVasutallomasAblak14Material );
+        HogsmadeVasutallomasAblak14Mesh.position.set( -3150, 180, 800 );
+        scene.add(HogsmadeVasutallomasAblak14Mesh);
+        let HogsmadeVasutallomasAblak15Geometry;
+        let HogsmadeVasutallomasAblak15Material;
+        let HogsmadeVasutallomasAblak15Mesh;
+        HogsmadeVasutallomasAblak15Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak15Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak15Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak15Geometry, HogsmadeVasutallomasAblak15Material );
+        HogsmadeVasutallomasAblak15Mesh.position.set( -3150, 180, 550 );
+        scene.add(HogsmadeVasutallomasAblak15Mesh);
+        let HogsmadeVasutallomasAblak16Geometry;
+        let HogsmadeVasutallomasAblak16Material;
+        let HogsmadeVasutallomasAblak16Mesh;
+        HogsmadeVasutallomasAblak16Geometry = new THREE.BoxGeometry( 6, 100, 100 );
+        HogsmadeVasutallomasAblak16Material = new THREE.MeshPhongMaterial( { color: 0xADD8E6, wireframe: false } );
+        HogsmadeVasutallomasAblak16Mesh = new THREE.Mesh( HogsmadeVasutallomasAblak16Geometry, HogsmadeVasutallomasAblak16Material );
+        HogsmadeVasutallomasAblak16Mesh.position.set( -3150, 600, 550 );
+        scene.add(HogsmadeVasutallomasAblak16Mesh);
+    }
+    function teto(){
+        let HogsmadeVasutallomasTetoGeometry;
+        let HogsmadeVasutallomasTetoMaterial;
+        let HogsmadeVasutallomasTetoMesh;
+        HogsmadeVasutallomasTetoGeometry = new THREE.BoxGeometry( 35, 630, 1400 );
+        HogsmadeVasutallomasTetoMaterial = new THREE.MeshPhongMaterial( { color: 0x800000, wireframe: false } );
+        HogsmadeVasutallomasTetoMesh = new THREE.Mesh( HogsmadeVasutallomasTetoGeometry, HogsmadeVasutallomasTetoMaterial );
+        HogsmadeVasutallomasTetoMesh.position.set( -3300, 970, 250 );
+        HogsmadeVasutallomasTetoMesh.rotation.z = 0.7;
+        scene.add(HogsmadeVasutallomasTetoMesh);
+        let HogsmadeVasutallomasTeto2Geometry;
+        let HogsmadeVasutallomasTeto2Material;
+        let HogsmadeVasutallomasTeto2Mesh;
+        HogsmadeVasutallomasTeto2Geometry = new THREE.BoxGeometry( 35, 640, 1400 );
+        HogsmadeVasutallomasTeto2Material = new THREE.MeshPhongMaterial( { color: 0x800000, wireframe: false } );
+        HogsmadeVasutallomasTeto2Mesh = new THREE.Mesh( HogsmadeVasutallomasTeto2Geometry, HogsmadeVasutallomasTeto2Material );
+        HogsmadeVasutallomasTeto2Mesh.position.set( -3700, 970, 250 );
+        HogsmadeVasutallomasTeto2Mesh.rotation.z = 2.4;
+        scene.add(HogsmadeVasutallomasTeto2Mesh);
+    }
+
+    function handleWindowResize() {
+        // Az ablak átméretezése esetén a kamera vetítési paraméterek újraszámolása
+        HEIGHT = window.innerHeight;
+        WIDTH = window.innerWidth;
+        // A konzolra kiírt szöveget a böngészpben is megnézhetjük:
+        // CTRL + Shift + i
+        // Console fülre kattintás
+        // A hibaüzenetek is itt láthatók (ha vannak)
+        console.log( 'WIDTH=' + WIDTH + '; HEIGHT=' + HEIGHT );
+        renderer.setSize( WIDTH, HEIGHT );
+        aspectRatio = WIDTH / HEIGHT;
+        camera.aspect = aspectRatio;
+        camera.updateProjectionMatrix();
+
+        render();
+    }
+
+    function animate() {
+        requestAnimationFrame( animate );
+        // Objektum elforgatási paraméterének módosítása
+
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.01;
+        controls.update();
+        render();
+    }
+
+    function render() {
+        // 3D -> 2D vetített kép kiszámítása.
+        // scene 3D színtér képe a camera kamera szemszögéből.
+        renderer.render( scene, camera );
+    }
+
+</script>
+</body>
+</html>
